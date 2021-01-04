@@ -8,20 +8,28 @@
  * Taken from:
  * http://stackoverflow.com/questions/7404366/how-do-i-insert-some-text-where-the-cursor-is
  */
+var debug = false
+function debugPrint(text) {
+    if (debug) {
+        console.log(text)
+    }
+}
+
+
 function insertTextAtCursor(text) {
     var el = document.querySelector("input.frm-battle-key");
     if (el) {
         el.value = text
-        console.log("paste element")
+        debugPrint("paste element")
     } else {
-        console.log("no such element")
+        debugPrint("no such element")
     }
 }
 
 function askBackground() {
-    console.log('sending message')
+    debugPrint('sending message')
     chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-        console.log(response);
+        debugPrint(response);
         insertTextAtCursor(response.data)
     });
 }
@@ -34,22 +42,24 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 function addInputPasteEvent() {
     var el = document.querySelector("input.frm-battle-key");
-    console.log('on body handler');
+    debugPrint('on body handler');
     if (el) {
-        console.log('register onload handler');
+        debugPrint('register onload handler');
         el.addEventListener("click", askBackground);
     }
 }
 
 // window.onload = function() {
 window.onload = function() {
-    console.log('plugin started')
+    debugPrint('plugin started')
     var obs = new MutationObserver(addInputPasteEvent)
-    var body = document.body;
+    // var body = document.body;
+    // var body = document.querySelector("div.mobage-game-container")
     var options = {
         'childList': true,
         'attributes':true,
         'characterData': true,
     };
-    obs.observe(body, options)
+    obs.observe(document.body, options)
+    obs.observe(document.head, options)
 };

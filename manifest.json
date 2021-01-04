@@ -4,6 +4,7 @@
     "manifest_version": 2,
 	"description": "gbf paste helper",
 	"icons": {
+        "16": "images/60757531_16.jpg",
 		"128": "images/60757531_0.jpg"
 	},
     "permissions": [
@@ -20,8 +21,6 @@
 				"http://game.granbluefantasy.jp/*",
 				"https://game.granbluefantasy.jp/*"
 			],
-			"include_globs": ["http://game.granbluefantasy.jp/?quest/assist*",
-				"https://game.granbluefantasy.jp/?quest/assist*"],
             "js": [
                 "auto_clipboard.js"
             ],
