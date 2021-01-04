@@ -1,0 +1,32 @@
+{
+    "name": "gbf auto paste",
+    "version": "0.0.1",
+    "manifest_version": 2,
+	"description": "gbf paste helper",
+	"icons": {
+		"128": "images/60757531_0.jpg"
+	},
+    "permissions": [
+        "clipboardRead",
+        "contextMenus"
+    ],
+    "background": {
+        "persistent": false,
+        "page": "background.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+				"http://game.granbluefantasy.jp/*",
+				"https://game.granbluefantasy.jp/*"
+			],
+			"include_globs": ["http://game.granbluefantasy.jp/?quest/assist*",
+				"https://game.granbluefantasy.jp/?quest/assist*"],
+            "js": [
+                "auto_clipboard.js"
+            ],
+            "run_at": "document_end",
+            "all_frames": false
+        }
+    ]
+}
