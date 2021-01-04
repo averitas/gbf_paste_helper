@@ -1,4 +1,4 @@
-# gbf-auto-paste
+# gbf-paste-helper
 
 肝报废插件，点击救援码框会自动把剪贴板内容黏贴进去
 
